@@ -218,7 +218,7 @@ def _get_image_id(ctx, commit, *, name, image_name):
     image = f"{image_base}/{image_name}:ref-{commit}"
 
     LOG.info(f"Pulling {image}")
-    res = ctx.run(f"docker pull {image}", hide="out")
+    res = ctx.run(f"docker pull {image}", hide="out", shell="/bin/sh")
 
     for line in res.stdout.split("\n"):
         if line.startswith("Digest:"):
